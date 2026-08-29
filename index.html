@@ -63,17 +63,22 @@
     .progress>div{height:100%;width:0;background:var(--accent);transition:width .2s ease}
     .tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;margin-top:24px}
     .tab{
-      flex:0 0 126px;
+      flex:0 0 190px;
       border:1px solid var(--border);
       background:#fff;
       color:var(--text);
       border-radius:18px;
-      padding:12px;
+      padding:12px 14px;
       text-align:left;
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+      white-space:nowrap;
     }
     .tab[aria-selected="true"]{background:var(--accent);color:var(--text);border-color:var(--accent)}
-    .tab .small{font-size:11px;opacity:.78}
-    .tab .date{font-size:19px;font-weight:700;margin:4px 0}
+    .tab .tab-main{font-size:19px;font-weight:700;line-height:1.2}
+    .tab .date{font-size:19px;font-weight:700;margin:0;white-space:nowrap}
+    .tab .weekday{font-size:12px;font-weight:500;opacity:.78}
     .filters{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
     .filter{
       border:1px solid var(--border);
@@ -166,33 +171,22 @@
           <div class="eyebrow">Tokyo · Kawaguchiko · Nikko</div>
           <h1>東京五日旅行</h1>
           <div class="subtitle">2026.09.26 — 09.30 · 3 adults</div>
-          <div class="chips">
-            
-            
-            
-            
-          </div>
-        </div>
-        <div class="countbox">
-          <div class="label">距離出發</div>
-          <div id="countdown" class="big">—</div>
-          <div id="countdownSub" class="label">2026/09/26</div>
         </div>
       </div>
 
       <div class="hero-grid">
-        <div class="stat"><div class="label">去程</div><div class="value">9/26 15:00 TPE</div><div class="muted">→ 19:25 NRT T2</div></div>
+        <div class="stat"><div class="label">去程</div><div class="value">9/26 15:00 TPE T1</div><div class="muted">→ 19:25 NRT T2</div></div>
         
-        <div class="stat"><div class="label">回程</div><div class="value">9/30 20:40 NRT T2</div><div class="muted">→ 23:20 TPE</div></div>
+        <div class="stat"><div class="label">回程</div><div class="value">9/30 20:40 NRT T2</div><div class="muted">→ 23:20 TPE T1</div></div>
       </div>
     </section>
 
     <nav class="tabs" aria-label="選擇日期">
-      <button class="tab" aria-selected="true" data-day="0" type="button"><span class="small">DAY 1 · 六</span><span class="date">09 / 26</span><span class="small">抵達東京</span></button>
-      <button class="tab" aria-selected="false" data-day="1" type="button"><span class="small">DAY 2 · 日</span><span class="date">09 / 27</span><span class="small">河口湖</span></button>
-      <button class="tab" aria-selected="false" data-day="2" type="button"><span class="small">DAY 3 · 一</span><span class="date">09 / 28</span><span class="small">御殿場</span></button>
-      <button class="tab" aria-selected="false" data-day="3" type="button"><span class="small">DAY 4 · 二</span><span class="date">09 / 29</span></button>
-      <button class="tab" aria-selected="false" data-day="4" type="button"><span class="small">DAY 5 · 三</span><span class="date">09 / 30</span><span class="small">新宿・回程</span></button>
+      <button class="tab" aria-selected="true" data-day="0" type="button"><span class="tab-main">DAY 1</span><span class="tab-main date">09 / 26</span><span class="weekday">六</span></button>
+      <button class="tab" aria-selected="false" data-day="1" type="button"><span class="tab-main">DAY 2</span><span class="tab-main date">09 / 27</span><span class="weekday">日</span></button>
+      <button class="tab" aria-selected="false" data-day="2" type="button"><span class="tab-main">DAY 3</span><span class="tab-main date">09 / 28</span><span class="weekday">一</span></button>
+      <button class="tab" aria-selected="false" data-day="3" type="button"><span class="tab-main">DAY 4</span><span class="tab-main date">09 / 29</span><span class="weekday">二</span></button>
+      <button class="tab" aria-selected="false" data-day="4" type="button"><span class="tab-main">DAY 5</span><span class="tab-main date">09 / 30</span><span class="weekday">三</span></button>
     </nav>
 
     <div class="filters" aria-label="篩選行程類型">
@@ -219,10 +213,6 @@
           <div class="label">今晚住宿</div>
           <div id="hotelName" class="value">karaksa hotel TOKYO STATION</div>
           <div id="hotelNote" class="muted" style="font-size:14px;margin-top:6px">抵達市區後 check-in。</div>
-        </div>
-
-        <div class="sidecard">
-          
         </div>
 
         <div class="sidecard">
@@ -412,24 +402,6 @@
         $('#dayNote').focus();
       });
 
-      const target = Date.UTC(2026,8,26);
-      const now = new Date();
-      const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-      const left = Math.ceil((target - today)/86400000);
-
-      if(left > 0){
-        $('#countdown').textContent = `${left} 天`;
-        $('#countdownSub').textContent = '距離出發';
-      }else if(left === 0){
-        $('#countdown').textContent = '今天出發 ✈';
-        $('#countdownSub').textContent = 'TOKYO 2026';
-      }else if(today <= Date.UTC(2026,8,30)){
-        $('#countdown').textContent = '旅行中 ✨';
-        $('#countdownSub').textContent = 'TOKYO 2026';
-      }else{
-        $('#countdown').textContent = '旅程完成';
-        $('#countdownSub').textContent = '2026/09/26–09/30';
-      }
 
       render();
     })();
