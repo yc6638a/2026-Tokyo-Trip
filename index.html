@@ -34,7 +34,7 @@
       color:var(--text);
       line-height:1.5;
     }
-    button,textarea{font:inherit}
+    button,
     button{cursor:pointer}
     .wrap{width:min(1100px,calc(100% - 28px));margin:0 auto;padding:24px 0 56px}
     .hero{
@@ -48,8 +48,6 @@
     .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
     h1{font-size:clamp(28px,5vw,44px);margin:8px 0 6px;line-height:1.08}
     .subtitle{color:var(--muted);font-size:14px}
-    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-    .chip{border:1px solid var(--border);background:#fff;border-radius:999px;padding:7px 11px;font-size:12px}
     .countbox{min-width:160px;border:1px solid var(--border);background:#fff;border-radius:18px;padding:14px}
     .countbox .big{font-size:28px;font-weight:700;margin-top:2px}
     .hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
@@ -74,16 +72,6 @@
     .tab[aria-selected="true"]{background:var(--accent);color:var(--text);border-color:var(--accent)}
     .tab .small{font-size:11px;opacity:.78}
     .tab .date{font-size:19px;font-weight:700;margin:4px 0}
-    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
-    .filter{
-      border:1px solid var(--border);
-      background:#fff;
-      color:var(--text);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:14px;
-    }
-    .filter[aria-pressed="true"]{background:var(--accent);color:var(--text);border-color:var(--accent)}
     .layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:20px}
     .dayhead{margin:6px 0 16px}
     .dayhead h2{font-size:26px;margin:4px 0}
@@ -132,16 +120,6 @@
     .sidecard{
       background:#fff;border:1px solid var(--border);border-radius:18px;padding:15px
     }
-    textarea{
-      width:100%;min-height:110px;border:1px solid var(--border);
-      border-radius:12px;padding:12px;background:#fafafa;color:var(--text);
-      resize:vertical;font-size:16px
-    }
-    .sidehead{display:flex;justify-content:space-between;align-items:center;gap:10px}
-    .clear{
-      border:1px solid var(--border);background:#fff;border-radius:10px;
-      padding:6px 9px;font-size:12px
-    }
     .footer{margin-top:28px;text-align:center;color:var(--muted);font-size:12px}
     button:focus-visible, textarea:focus-visible{outline:3px solid var(--accent-soft);outline-offset:2px}
     @media (max-width:760px){
@@ -166,13 +144,7 @@
           <div class="eyebrow">Tokyo · Kawaguchiko · Nikko</div>
           <h1>東京五日旅行</h1>
           <div class="subtitle">2026.09.26 — 09.30 · 3 adults</div>
-          <div class="chips">
-            <span class="chip">✈ TPE → NRT</span>
-            <span class="chip">♨ 河口湖溫泉</span>
-            <span class="chip">🛍 御殿場 Outlet</span>
-            <span class="chip">⛩ 日光</span>
-          </div>
-        </div>
+</div>
         <div class="countbox">
           <div class="label">距離出發</div>
           <div id="countdown" class="big">—</div>
@@ -199,17 +171,7 @@
       <button class="tab" aria-selected="false" data-day="3" type="button"><span class="small">DAY 4 · 二</span><span class="date">09 / 29</span><span class="small">日光</span></button>
       <button class="tab" aria-selected="false" data-day="4" type="button"><span class="small">DAY 5 · 三</span><span class="date">09 / 30</span><span class="small">新宿・回程</span></button>
     </nav>
-
-    <div class="filters" aria-label="篩選行程類型">
-      <button type="button" class="filter" aria-pressed="true" data-filter="all">全部</button>
-      <button type="button" class="filter" aria-pressed="false" data-filter="transport">🚆 交通</button>
-      <button type="button" class="filter" aria-pressed="false" data-filter="spot">📍 景點</button>
-      <button type="button" class="filter" aria-pressed="false" data-filter="food">🍜 餐食</button>
-      <button type="button" class="filter" aria-pressed="false" data-filter="shopping">🛍 購物</button>
-      <button type="button" class="filter" aria-pressed="false" data-filter="hotel">🏨 住宿</button>
-    </div>
-
-    <section class="layout">
+<section class="layout">
       <div>
         <div class="dayhead">
           <div id="dayKicker" class="eyebrow">DAY 1 · 2026/09/26</div>
@@ -225,17 +187,7 @@
           <div id="hotelName" class="value">karaksa hotel TOKYO STATION</div>
           <div id="hotelNote" class="muted" style="font-size:14px;margin-top:6px">抵達市區後 check-in。</div>
         </div>
-
-        <div class="sidecard">
-          <div class="sidehead">
-            <strong>當日備忘</strong>
-            <button id="clearNote" type="button" class="clear">清除</button>
-          </div>
-          <textarea id="dayNote" placeholder="例如：買水、記得拿行李、集合地點…"></textarea>
-          <div class="label" style="margin-top:7px">備忘只保留在目前開啟的網頁中。</div>
-        </div>
-
-        <div class="sidecard">
+<div class="sidecard">
           <div class="label">旅程重點</div>
           <div id="dayHighlight" style="margin-top:7px;font-size:14px"></div>
         </div>
@@ -330,9 +282,7 @@
       ];
 
       let selectedDay = 0;
-      let filter = 'all';
       const checked = new Set();
-      const notes = Array(days.length).fill('');
 
       const $ = s => document.querySelector(s);
       const $$ = s => [...document.querySelectorAll(s)];
@@ -356,13 +306,11 @@
         $('#hotelName').textContent = d.hotel;
         $('#hotelNote').textContent = d.hotelNote;
         $('#dayHighlight').textContent = d.highlight;
-        $('#dayNote').value = notes[selectedDay];
 
         const timeline = $('#timeline');
         timeline.innerHTML = '';
 
         d.events.forEach((ev,i)=>{
-          if(filter !== 'all' && ev.type !== filter) return;
           const key = `${selectedDay}-${i}`;
           const article = document.createElement('article');
           article.className = 'event' + (checked.has(key) ? ' done' : '');
@@ -388,19 +336,11 @@
 
       $$('.tab').forEach(btn=>{
         btn.addEventListener('click',()=>{
-          notes[selectedDay] = $('#dayNote').value;
           selectedDay = Number(btn.dataset.day);
           $$('.tab').forEach(b=>b.setAttribute('aria-selected', String(b===btn)));
           render();
         });
       });
-
-      $$('.filter').forEach(btn=>{
-        btn.addEventListener('click',()=>{
-          filter = btn.dataset.filter;
-          $$('.filter').forEach(b=>b.setAttribute('aria-pressed', String(b===btn)));
-          render();
-        });
       });
 
       $('#timeline').addEventListener('change',e=>{
@@ -419,13 +359,6 @@
         btn.setAttribute('aria-expanded', String(!open));
         btn.textContent = open ? '查看細節' : '收合細節';
         target.hidden = open;
-      });
-
-      $('#dayNote').addEventListener('input', e => notes[selectedDay] = e.target.value);
-      $('#clearNote').addEventListener('click', ()=>{
-        notes[selectedDay] = '';
-        $('#dayNote').value = '';
-        $('#dayNote').focus();
       });
 
       const target = Date.UTC(2026,8,26);
