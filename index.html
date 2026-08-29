@@ -147,6 +147,31 @@
       border:1px solid var(--border);background:#fff;border-radius:10px;
       padding:6px 9px;font-size:12px
     }
+
+    .map-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:10px;
+      padding:8px 12px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:var(--accent);
+      color:var(--text);
+      font-size:13px;
+      font-weight:700;
+      text-decoration:none;
+      transition:filter .15s ease,transform .15s ease;
+    }
+    .event-map-btn{
+      margin-top:7px;
+      padding:6px 10px;
+      font-size:12px;
+      width:max-content;
+      max-width:100%;
+    }
+    .map-btn:hover{filter:brightness(.96)}
+    .map-btn:active{transform:translateY(1px)}
     .footer{margin-top:28px;text-align:center;color:var(--muted);font-size:12px}
     button:focus-visible, textarea:focus-visible{outline:3px solid var(--accent-soft);outline-offset:2px}
     @media (max-width:760px){
@@ -212,7 +237,8 @@
         <div class="sidecard">
           <div class="label">今晚住宿</div>
           <div id="hotelName" class="value">karaksa hotel TOKYO STATION</div>
-          <div id="hotelNote" class="muted" style="font-size:14px;margin-top:6px">抵達市區後 check-in。</div>
+          <a id="hotelMap" class="map-btn" href="https://www.google.com/maps/search/?api=1&query=karaksa%20hotel%20TOKYO%20STATION%2C%201-5-3%20Yaesu%2C%20Chuo-ku%2C%20Tokyo%20103-0028%2C%20Japan" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+          <div id="hotelNote" class="muted" style="font-size:14px;margin-top:8px">抵達市區後 check-in。</div>
         </div>
 
         <div class="sidecard">
@@ -230,7 +256,7 @@
       const days = [
         {
           kicker:'DAY 1 · 2026/09/26（六）', title:'台灣 → 東京', subtitle:'從林口出發，搭機抵達成田後前往東京車站。',
-          hotel:'karaksa hotel TOKYO STATION', hotelNote:'前往市區後飯店 check-in。',
+          hotel:'karaksa hotel TOKYO STATION', hotelNote:'前往市區後飯店 check-in。', map:'https://www.google.com/maps/search/?api=1&query=karaksa%20hotel%20TOKYO%20STATION%2C%201-5-3%20Yaesu%2C%20Chuo-ku%2C%20Tokyo%20103-0028%2C%20Japan',
           highlight:'抵達成田後依實際通關時間，在 N’EX 52、Access 特急與 N’EX 54 之間選擇。',
           events:[
             {time:'12:00–12:20',type:'transport',icon:'🚆',title:'家 → 林口 A9'},
@@ -245,27 +271,27 @@
         },
         {
           kicker:'DAY 2 · 2026/09/27（日）', title:'東京 → 河口湖', subtitle:'富士山景觀纜車、午餐、大石公園，入住溫泉旅館。',
-          hotel:'富士山景觀溫泉旅館 大池飯店', hotelNote:'下午前往飯店，晚上溫泉。',
+          hotel:'富士山景觀溫泉旅館 大池飯店', hotelNote:'下午前往飯店，晚上溫泉。', map:'https://www.google.com/maps/search/?api=1&query=%E5%AF%8C%E5%A3%AB%E5%B1%B1%E3%81%AE%E8%A6%8B%E3%81%88%E3%82%8B%E6%B8%A9%E6%B3%89%E6%97%85%E9%A4%A8%20%E5%A4%A7%E6%B1%A0%E3%83%9B%E3%83%86%E3%83%AB%2C%20%E5%B1%B1%E6%A2%A8%E7%9C%8C%E5%8D%97%E9%83%BD%E7%95%99%E9%83%A1%E5%AF%8C%E5%A3%AB%E6%B2%B3%E5%8F%A3%E6%B9%96%E7%94%BA%E8%88%B9%E6%B4%A56713-103',
           highlight:'7:35 從東京站鋼鐵大樓南館出發；河口湖移動以紅線巴士為主。',
           events:[
-            {time:'07:35',type:'transport',icon:'🚌',title:'東京站鋼鐵大樓南館一樓 → 河口湖站',details:'富士急巴士，預計 09:47 抵達河口湖站。'},
-            {time:'10:00',type:'transport',icon:'🚌',title:'河口湖站 → 遊覧船・ロープウェイ入口站',details:'紅線巴士 ¥180／人；或步行約 15 分鐘。'},
+            {time:'07:35',type:'transport',icon:'🚌',title:'東京站鋼鐵大樓南館一樓 → 河口湖站',details:'富士急巴士，預計 09:47 抵達河口湖站。',map:'https://www.google.com/maps/dir/?api=1&destination=%E9%89%84%E9%8B%BC%E3%83%93%E3%83%AB%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%20%E5%8D%97%E9%A4%A8%2C%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA%E4%B8%B8%E3%81%AE%E5%86%851%E4%B8%81%E7%9B%AE8-2'},
+            {time:'10:00',type:'transport',icon:'🚌',title:'河口湖站 → 遊覧船・ロープウェイ入口站',details:'紅線巴士 ¥180／人；或步行約 15 分鐘。',map:'https://www.google.com/maps/dir/?api=1&destination=%E9%81%8A%E8%A6%A7%E8%88%B9%E3%83%BB%E3%83%AD%E3%83%BC%E3%83%97%E3%82%A6%E3%82%A7%E3%82%A4%E5%85%A5%E5%8F%A3%20%E3%83%90%E3%82%B9%E5%81%9C%2C%20%E5%AF%8C%E5%A3%AB%E6%B2%B3%E5%8F%A3%E6%B9%96%E7%94%BA'},
             {time:'上午',type:'spot',icon:'🚠',title:'富士山景觀纜車',details:'現場買票 ¥1,000／人。'},
             {time:'中午',type:'food',icon:'🍜',title:'河口湖午餐',details:'候選：ほうとう不動 河口湖站前店／湖波／みずの風蕎麥麵。'},
-            {time:'午後',type:'transport',icon:'🚌',title:'前往河口湖自然生活館',details:'紅線巴士至河口湖自然生活館站，¥570／人。'},
-            {time:'午後',type:'spot',icon:'🌿',title:'大石公園'},
+            {time:'午後',type:'transport',icon:'🚌',title:'前往河口湖自然生活館',details:'紅線巴士至河口湖自然生活館站，¥570／人。',map:'https://www.google.com/maps/dir/?api=1&destination=%E6%B2%B3%E5%8F%A3%E6%B9%96%E8%87%AA%E7%84%B6%E7%94%9F%E6%B4%BB%E9%A4%A8%2C%20%E5%B1%B1%E6%A2%A8%E7%9C%8C%E5%8D%97%E9%83%BD%E7%95%99%E9%83%A1%E5%AF%8C%E5%A3%AB%E6%B2%B3%E5%8F%A3%E6%B9%96%E7%94%BA%E5%A4%A7%E7%9F%B32585'},
+            {time:'午後',type:'spot',icon:'🌿',title:'大石公園',map:'https://www.google.com/maps/dir/?api=1&destination=%E5%A4%A7%E7%9F%B3%E5%85%AC%E5%9C%92%2C%20%E5%B1%B1%E6%A2%A8%E7%9C%8C%E5%8D%97%E9%83%BD%E7%95%99%E9%83%A1%E5%AF%8C%E5%A3%AB%E6%B2%B3%E5%8F%A3%E6%B9%96%E7%94%BA%E5%A4%A7%E7%9F%B32525'},
             {time:'之後',type:'transport',icon:'🚌',title:'前往大池飯店',details:'紅線巴士至河口湖ハーブ館站，下車步行約 4 分鐘；或回河口湖站等待飯店接駁車。'},
             {time:'晚上',type:'hotel',icon:'♨️',title:'入住大池飯店・溫泉'}
           ]
         },
         {
           kicker:'DAY 3 · 2026/09/28（一）', title:'河口湖 → 御殿場 Outlet → 東京', subtitle:'上午移動至御殿場 Outlet，傍晚回東京站。',
-          hotel:'karaksa hotel TOKYO STATION', hotelNote:'回到東京後再次入住。',
+          hotel:'karaksa hotel TOKYO STATION', hotelNote:'回到東京後再次入住。', map:'https://www.google.com/maps/search/?api=1&query=karaksa%20hotel%20TOKYO%20STATION%2C%201-5-3%20Yaesu%2C%20Chuo-ku%2C%20Tokyo%20103-0028%2C%20Japan',
           highlight:'9:30 搭飯店接駁至河口湖站，10:00 G-Liner 出發；17:20 從 Outlet 回東京。',
           events:[
             {time:'09:30',type:'transport',icon:'🚐',title:'大池飯店接駁 → 河口湖站'},
             {time:'10:00–11:10',type:'transport',icon:'🚌',title:'G-Liner → 御殿場 Outlet'},
-            {time:'11:10 起',type:'shopping',icon:'🛍',title:'御殿場 Premium Outlets'},
+            {time:'11:10 起',type:'shopping',icon:'🛍',title:'御殿場 Premium Outlets',map:'https://www.google.com/maps/dir/?api=1&destination=%E5%BE%A1%E6%AE%BF%E5%A0%B4%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%BB%E3%82%A2%E3%82%A6%E3%83%88%E3%83%AC%E3%83%83%E3%83%88%2C%20%E9%9D%99%E5%B2%A1%E7%9C%8C%E5%BE%A1%E6%AE%BF%E5%A0%B4%E5%B8%82%E6%B7%B1%E6%B2%A21312'},
             {time:'17:20–19:10',type:'transport',icon:'🚌',title:'御殿場 Outlet → 東京車站日本橋口',details:'搭高速巴士返回東京。'},
             {time:'晚上',type:'shopping',icon:'🛒',title:'超市：成城石井'},
             {time:'晚上',type:'hotel',icon:'🏨',title:'karaksa hotel TOKYO STATION'}
@@ -273,15 +299,15 @@
         },
         {
           kicker:'DAY 4 · 2026/09/29（二）', title:'日光一日遊', subtitle:'KLOOK 一日遊：神橋、東照宮、華嚴瀑布、中禪寺湖。',
-          hotel:'karaksa hotel TOKYO STATION', hotelNote:'日光行程結束後回東京住宿。',
+          hotel:'karaksa hotel TOKYO STATION', hotelNote:'日光行程結束後回東京住宿。', map:'https://www.google.com/maps/search/?api=1&query=karaksa%20hotel%20TOKYO%20STATION%2C%201-5-3%20Yaesu%2C%20Chuo-ku%2C%20Tokyo%20103-0028%2C%20Japan',
           highlight:'07:50 東京八重洲巴士總站 B1F A01 乘車處集合，預計 18:00 回到東京車站。',
           events:[
-            {time:'07:50',type:'transport',icon:'🚌',title:'東京八重洲巴士總站集合',details:'B1F，A01 乘車處。'},
-            {time:'上午',type:'spot',icon:'🌉',title:'神橋'},
-            {time:'上午',type:'spot',icon:'⛩️',title:'東照宮'},
-            {time:'午後',type:'spot',icon:'💧',title:'華嚴瀑布'},
-            {time:'午後',type:'spot',icon:'🏞️',title:'中禪寺湖'},
-            {time:'約18:00',type:'transport',icon:'🚌',title:'回到東京車站'},
+            {time:'07:50',type:'transport',icon:'🚌',title:'東京八重洲巴士總站集合',details:'B1F，A01 乘車處。',map:'https://www.google.com/maps/dir/?api=1&destination=%E3%83%90%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E6%9D%B1%E4%BA%AC%E5%85%AB%E9%87%8D%E6%B4%B2%2C%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%85%AB%E9%87%8D%E6%B4%B22%E4%B8%81%E7%9B%AE2-1'},
+            {time:'上午',type:'spot',icon:'🌉',title:'神橋',map:'https://www.google.com/maps/dir/?api=1&destination=%E7%A5%9E%E6%A9%8B%2C%20%E6%A0%83%E6%9C%A8%E7%9C%8C%E6%97%A5%E5%85%89%E5%B8%82%E4%B8%8A%E9%89%A2%E7%9F%B3%E7%94%BA'},
+            {time:'上午',type:'spot',icon:'⛩️',title:'東照宮',map:'https://www.google.com/maps/dir/?api=1&destination=%E6%97%A5%E5%85%89%E6%9D%B1%E7%85%A7%E5%AE%AE%2C%20%E6%A0%83%E6%9C%A8%E7%9C%8C%E6%97%A5%E5%85%89%E5%B8%82%E5%B1%B1%E5%86%852301'},
+            {time:'午後',type:'spot',icon:'💧',title:'華嚴瀑布',map:'https://www.google.com/maps/dir/?api=1&destination=%E8%8F%AF%E5%8E%B3%E6%BB%9D%2C%20%E6%A0%83%E6%9C%A8%E7%9C%8C%E6%97%A5%E5%85%89%E5%B8%82%E4%B8%AD%E5%AE%AE%E7%A5%A0'},
+            {time:'午後',type:'spot',icon:'🏞️',title:'中禪寺湖',map:'https://www.google.com/maps/dir/?api=1&destination=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B9%96%2C%20%E6%A0%83%E6%9C%A8%E7%9C%8C%E6%97%A5%E5%85%89%E5%B8%82%E4%B8%AD%E5%AE%AE%E7%A5%A0'},
+            {time:'約18:00',type:'transport',icon:'🚌',title:'回到東京車站',map:'https://www.google.com/maps/dir/?api=1&destination=%E6%9D%B1%E4%BA%AC%E9%A7%85%2C%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA%E4%B8%B8%E3%81%AE%E5%86%851%E4%B8%81%E7%9B%AE'},
             {time:'晚上',type:'food',icon:'🍜',title:'晚餐',details:'東京車站駅弁屋／拉麵一番街。'},
             {time:'晚上',type:'hotel',icon:'🏨',title:'karaksa hotel TOKYO STATION'}
           ]
@@ -291,15 +317,15 @@
           hotel:'HOME', hotelNote:'20:40 搭機返台。',
           highlight:'主要購物目標：HOKA Bondi／Clifton、On Cloudmonster；約 18:10 抵達成田機場。',
           events:[
-            {time:'上午',type:'transport',icon:'🚆',title:'東京車站 → JR 有樂町站'},
-            {time:'上午',type:'shopping',icon:'👟',title:'HOKA',details:'目標鞋款：Bondi／Clifton。'},
+            {time:'上午',type:'transport',icon:'🚆',title:'東京車站 → JR 有樂町站',map:'https://www.google.com/maps/dir/?api=1&destination=%E6%9D%B1%E4%BA%AC%E9%A7%85%2C%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA%E4%B8%B8%E3%81%AE%E5%86%851%E4%B8%81%E7%9B%AE'},
+            {time:'上午',type:'shopping',icon:'👟',title:'HOKA',details:'目標鞋款：Bondi／Clifton。',map:'https://www.google.com/maps/dir/?api=1&destination=HOKA%20MARUNOUCHI%2C%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA%E6%9C%89%E6%A5%BD%E7%94%BA1%E4%B8%81%E7%9B%AE7-1%20%E6%9C%89%E6%A5%BD%E7%94%BA%E9%9B%BB%E6%B0%97%E3%83%93%E3%83%AB%201F'},
             {time:'上午',type:'shopping',icon:'👟',title:'On',details:'目標鞋款：Cloudmonster。'},
             {time:'之後',type:'transport',icon:'🚇',title:'有樂町 → 新宿',details:'地鐵丸之內線 → JR 新宿站東口。'},
-            {time:'上午',type:'shopping',icon:'🛍',title:'新宿 Alpen'},
-            {time:'上午',type:'shopping',icon:'📷',title:'Bic Camera 新宿東口 6樓'},
-            {time:'上午',type:'shopping',icon:'🎁',title:'新宿伊勢丹店',details:'伴手禮。'},
-            {time:'可替代',type:'shopping',icon:'👟',title:'上野 Art Sports ODBOX',details:'不往新宿時可改走此行程。'},
-            {time:'中午',type:'food',icon:'🥩',title:'和牛燒肉 肉屋の台所 新宿東口2號店'},
+            {time:'上午',type:'shopping',icon:'🛍',title:'新宿 Alpen',map:'https://www.google.com/maps/dir/?api=1&destination=Alpen%20TOKYO%2C%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E6%96%B0%E5%AE%BF3%E4%B8%81%E7%9B%AE23-7'},
+            {time:'上午',type:'shopping',icon:'📷',title:'Bic Camera 新宿東口 6樓',map:'https://www.google.com/maps/dir/?api=1&destination=%E3%83%93%E3%83%83%E3%82%AF%E3%82%AB%E3%83%A1%E3%83%A9%E6%96%B0%E5%AE%BF%E6%9D%B1%E5%8F%A3%E5%BA%97%2C%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E6%96%B0%E5%AE%BF3%E4%B8%81%E7%9B%AE29-1'},
+            {time:'上午',type:'shopping',icon:'🎁',title:'新宿伊勢丹店',details:'伴手禮。',map:'https://www.google.com/maps/dir/?api=1&destination=%E4%BC%8A%E5%8B%A2%E4%B8%B9%20%E6%96%B0%E5%AE%BF%E5%BA%97%2C%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E6%96%B0%E5%AE%BF3%E4%B8%81%E7%9B%AE14-1'},
+            {time:'可替代',type:'shopping',icon:'👟',title:'上野 Art Sports ODBOX',details:'不往新宿時可改走此行程。',map:'https://www.google.com/maps/dir/?api=1&destination=%E3%82%A2%E3%83%BC%E3%83%88%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84%20%E6%9C%AC%E5%BA%97%2C%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8F%B0%E6%9D%B1%E5%8C%BA%E4%B8%8A%E9%87%8E3%E4%B8%81%E7%9B%AE25-10%20%E6%9D%BE%E5%9D%82%E5%B1%8B%E3%83%91%E3%83%BC%E3%82%AF%E3%83%97%E3%83%AC%E3%82%A4%E3%82%B924'},
+            {time:'中午',type:'food',icon:'🥩',title:'和牛燒肉 肉屋の台所 新宿東口2號店',map:'https://www.google.com/maps/dir/?api=1&destination=%E8%82%89%E5%B1%8B%E3%81%AE%E5%8F%B0%E6%89%80%20%E6%96%B0%E5%AE%BF%E6%9D%B1%E5%8F%A32%E5%8F%B7%E5%BA%97%2C%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E6%96%B0%E5%AE%BF3%E4%B8%81%E7%9B%AE18-4%20%E3%82%BB%E3%83%8E%E3%83%93%E3%83%AB7F'},
             {time:'16:22–17:35',type:'transport',icon:'🚇',title:'Access 特急：日本橋 → 成田二航',details:'機場交通候選 1。'},
             {time:'17:03–17:54',type:'transport',icon:'🚄',title:'N’EX 43號：東京站 → 成田二航',details:'機場交通候選 2。'},
             {time:'17:05–18:16',type:'transport',icon:'🚇',title:'Access 特急：日本橋 → 成田二航',details:'機場交通候選 3。'},
@@ -331,6 +357,13 @@
         $('#dayTitle').textContent = d.title;
         $('#daySubtitle').textContent = d.subtitle;
         $('#hotelName').textContent = d.hotel;
+        const hotelMap = $('#hotelMap');
+        if(d.map){
+          hotelMap.href = d.map;
+          hotelMap.hidden = false;
+        } else {
+          hotelMap.hidden = true;
+        }
         $('#hotelNote').textContent = d.hotelNote;
         $('#dayHighlight').textContent = d.highlight;
 
@@ -350,6 +383,7 @@
                 <div>
                   <div class="time">${esc(ev.time)}</div>
                   <div class="event-title">${esc(ev.title)}</div>
+                  ${ev.map ? `<a class="map-btn event-map-btn" href="${esc(ev.map)}" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>` : ''}
                 </div>
               </div>
               ${ev.details ? `
